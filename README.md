@@ -18,3 +18,7 @@ Repo Directory Structure and contents of it.
 - 04_Classes_and_Objects
 
     Programs related to object oriented programming. 
+
+- 05_Data_Structures_Algorithms
+
+    Concepts and Programs related to Data Structures and Algorithms
