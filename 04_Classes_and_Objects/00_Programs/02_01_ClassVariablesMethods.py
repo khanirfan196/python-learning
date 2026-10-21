@@ -12,3 +12,9 @@ if __name__ == "__main__":
 
     print(ToyotaCar.car)
     ToyotaCar.buildcar()
+
+    toy = ToyotaCar()
+
+    print("Accessing class method through instance.")
+    toy.buildcar()
+
