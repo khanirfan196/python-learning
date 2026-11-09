@@ -24,22 +24,64 @@ class Watch():
         self.color = color
 
     def current_time(self):
+        print("Watch fetches current timestamp from bios")
         return datetime.datetime.now()
 
     def __str__(self):
         return f"""
-Watch configurations - 
-    color: {self.color}
-    Watch dial: {self.dial_size}
-    Watch strap: {self.strap_len}"""
+            Watch configurations - 
+                color: {self.color}
+                Watch dial: {self.dial_size}
+                Watch strap: {self.strap_len}
+            """
 
 class Android():
-    pass
+    _android_version = "1.0.0"
+    _user_interface = "one_ui"
+
+    def __init__(self):
+        pass
+
+    def connect_bluetooth(self):
+        pass 
+
+    def show_battery_level(self):
+        pass
+
+    def update_os(self):
+        pass
+
+    def current_time(self):
+        print("Android fetches current timestamp from server.")
+        return datetime.datetime.now()
+
+
+class SmartWatch(Android, Watch):
+
+    def __init__(self, dial_size, strap_len, color):
+        # 1. Initialize the Android side explicitly (takes no args)
+        Android.__init__(self)
+        
+        # 2. Initialize the Watch side explicitly (takes the 3 args)
+        Watch.__init__(self, dial_size, strap_len, color)
 
 
 if __name__ == "__main__":
 
-    wrist_watch = Watch(32, 7.5, "blue")
+    # wrist_watch = Watch(32, 7.5, "blue")
 
-    print(wrist_watch)
-    print(wrist_watch.current_time())
+    # print(wrist_watch)
+    # print(wrist_watch.current_time())
+
+    smart_watch = SmartWatch(32, 7.5, "blue")
+    # smart_watch = SmartWatch()
+    print(smart_watch)
+    # below output will print current_time() method based on the order of 
+    # parent classes specified in the child class.
+    # If Watch class is first meaning SmartWatch(Watch, Android), then current_time()
+    # of Watch class is called if order is reversed, i.e. SmartWatch(Android, Watch), then
+    # current_time() of Android parent class is called.
+    print(smart_watch.current_time())
+
+    # special method to list the order of parent classes specified in a child class.
+    # print(SmartWatch.__mro__)
